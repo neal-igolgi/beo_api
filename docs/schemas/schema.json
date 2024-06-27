@@ -39,17 +39,17 @@
 
             },
             "hls" : { 
-                    "schema" : "hls_input" 
+                    "$ref" : "/hls_input" 
             },
             "baseband" : {
 
             },
             "cropping" : {
-                    "schema" : "cropping",
+                    "$ref" : "/cropping",
                     "optional" : true
             },
             "slate_config" : {
-                    "schema" : "slate_config" ,
+                    "$ref" : "/slate_config" ,
                     "optional" : true
             }
         },
@@ -77,16 +77,16 @@
                     ]
             },
             "multi_ts_out" : { 
-                    "schema" : "multi_ts_out" 
+                    "$ref" : "/multi_ts_out" 
             },
             "single_ts_out" : { 
-                    "schema" : "single_ts_out" 
+                    "$ref" : "/single_ts_out" 
             },
             "sdi_out"   : { 
-                    "schema" : "sdi_out"
+                    "$ref" : "/sdi_out"
             },
             "hls_out" : { 
-                    "schema" : "hls_out" 
+                    "$ref" : "/hls_out" 
             }
         },
         "anyOf" : {
@@ -138,7 +138,7 @@
         "description" : "describe the ip_ts input",
         "properties" : {
             "primary" : {
-                  "schema" : "ts_input" 
+                  "$ref" : "/ts_input" 
             },
             "source_timeout" : {
                 "type" : "integer",
@@ -151,7 +151,7 @@
                 "description" : "if true, then secondary source is defined"
             },
             "secondary" : {
-                "schema" : "ts_input",
+                "$ref" : "/ts_input",
                 "description" : "this is the secondary transport stream "
             }
         }
@@ -164,8 +164,8 @@
     },
 
     "ts_input" : {
-        "description" : "This describes a transport stream input",
         "type" : "object",
+        "description" : "This describes a transport stream input",
         "properties" : {
             "program_index" : {
                 "type" : "integer",
@@ -174,15 +174,15 @@
                 "description" : "this is the description" 
             },
             "socket" : {
-                "schema" : "socket",
+                "$ref" : "/socket",
                 "description" : "this is the socket parameters for this input "
             }
         }
     }, 
 
     "socket" : {
-        "description" : "This describes a udp socket connection",
         "type" : "object",
+        "description" : "This describes a udp socket connection",
         "properties" : {
             "interface" : {
                 "type" : "string",
@@ -256,9 +256,9 @@
     },
 
     "mulit_ts_out" : {
-        "title" : "MultiTS Output Object",
-        "description" : "this object specifies the multi-ts output of the transcode session",
         "type" : "object",
+        "title" : "MultiTS Output Object",
+        "description" : "This object specifies the multi-ts output of the transcode session",
         "properties" : {
             "encoder" : { 
                     "type" : "enumeration",
@@ -376,7 +376,7 @@
                     "description" : "TBD"
             },
             "audio_mapping" : { 
-                "schema" : "audio_mapping"
+                "$ref" : "/audio_mapping"
             },
             "pid_generation" : { 
                     "type" : "string",
@@ -397,25 +397,25 @@
                     "description" : "You can turn scte35 passthru on or off "
             },
             "output_settings" : { 
-                "schema" : "output_settings"
+                "$ref" : "/output_settings"
             },
             "video_profiles" : { 
-                "schema" : "video_profiles"
+                "$ref" : "/video_profiles"
             },
             "audio_profiles" : { 
-                "schema" : "audio_profiles"
+                "$ref" : "/audio_profiles"
             },
             "output_streams" : { 
-                "schema" : "output_streams"
+                "$ref" : "/output_streams"
             } 
         },
         "required" : [  ]
     },
 
     "audio_mapping" : { 
+        "type" : "object",
         "title" : "Audio Mapping Object",
         "description" : "this object specifies the mapping between input and output",
-        "type" : "object",
         "properties" : {
             "output_audio_1" : {
                 "type" : "string",
@@ -452,9 +452,9 @@
      },
 
     "output_settings" : {  
+        "type" : "object",
         "title" : "MultiTS Output Settings",
         "description" : "this object specifies the output settings for multi-ts output of the transcode session",
-        "type" : "object",
         "properties" : {
             "network_interface" : { 
                     "type" : "string",
@@ -501,7 +501,7 @@
         "type" : "array",
         "items" : {
             "type" : "object",
-            "schema" : "lmv_video_profile"
+            "$ref" : "/lmv_video_profile"
         },
         "description" :  "This is the array of video profiles"
     },
@@ -512,7 +512,7 @@
         "type" : "array",
         "items" : {
             "type" : "object",
-            "schema" : "lmv_audio_profile"
+            "$ref" : "/lmv_audio_profile"
         },
         "description" :  "This is the array of audio profiles"
     },
@@ -523,16 +523,16 @@
         "type" : "array",
         "items" : {
             "type" : "object",
-            "schema" : "lmv_output_stream"
+            "$ref" : "/lmv_output_stream"
         },
         "description" :  "This is the array of audio profiles"
     },
 
 
     "lmv_video_profile" : {
+        "type" : "object",
         "title" : "Video Profile",
         "description" : "This object specifies parameters for a video profile",
-        "type" : "object",
         "properties" : {
             "width" : {
                 "type" : "integer",
@@ -570,9 +570,9 @@
     },
 
     "lmv_audio_profile" : {
+        "type" : "object",
         "title" : "Audio Profile",
         "description" : "This object specifies parameters for an audio profile",
-        "type" : "object",
         "properties" : {
             "source_stream" : {
                 "type" : "integer",
