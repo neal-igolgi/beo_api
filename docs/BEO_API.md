@@ -110,7 +110,7 @@ This is the command to start a channel in the ADI.
     
 ### Description
 
-    This is the command to get the runtime status of a channel
+This is the command to get the runtime status of a channel
 
 ### HTTP Request
 
@@ -134,7 +134,7 @@ This is the command to start a channel in the ADI.
     
 ### Description
 
-    This is the command to get a config for a channel
+This is the command to get a config for a channel
 
 ### HTTP Request
 
@@ -159,7 +159,7 @@ This is the command to start a channel in the ADI.
     
 ### Description
 
-    This is the command to create a config for a channel
+This is the command to create a config for a channel
 
 ### HTTP Request
 
@@ -182,7 +182,7 @@ This is the command to start a channel in the ADI.
     
 ### Description
 
-    This is the command to delete a config for a channel
+This is the command to delete a config for a channel
 
 ### HTTP Request
 
@@ -202,7 +202,7 @@ This is the command to start a channel in the ADI.
     
 ### Description
 
-    This is the command to get a list of configs for a channel
+This is the command to get a list of configs for a channel
 
 ### HTTP Request
 
@@ -228,7 +228,7 @@ This is the command to start a channel in the ADI.
     
 ### Description
 
-    This is the command to start the slate on a channel
+This is the command to start the slate on a channel
 
 ### HTTP Request
 
@@ -250,7 +250,7 @@ This is the command to start a channel in the ADI.
     
 ### Description
 
-    This is the command to start the slate on a channel
+This is the command to start the slate on a channel
 
 ### HTTP Request
 
@@ -273,9 +273,9 @@ This is the command to start a channel in the ADI.
     
 ### Description
 
-    This is the command to select a new slate image file. If the channel is
-    running, then the transcoder will pick up the new file while running.
-    If the channel is not running, then the config file is updated.
+This is the command to select a new slate image file. If the channel is
+running, then the transcoder will pick up the new file while running.
+If the channel is not running, then the config file is updated.
 
 ### HTTP Request
 
@@ -300,7 +300,7 @@ This is the command to start a channel in the ADI.
     
 ### Description
 
-    This is the command to upload a slate image file
+This is the command to upload a slate image file
 
 ### HTTP Request
 
@@ -324,9 +324,9 @@ This is the command to start a channel in the ADI.
     
 ### Description
 
-    This is the command to delete a slate image file
-    QUESTION: what happens if you delete a slate image that is in use? 
-    ANSWER: you should not use it any more
+This is the command to delete a slate image file
+QUESTION: what happens if you delete a slate image that is in use? 
+ANSWER: you should not use it any more
 
 ### HTTP Request
 
@@ -351,7 +351,7 @@ This is the command to start a channel in the ADI.
 -----------------------------------------------------------------------
 ## Json Objects:
 
-[JSon Schema](./schemas/schema.json)
+[Json Schema](./schemas/schema.json)
 
 # Implementation
 
