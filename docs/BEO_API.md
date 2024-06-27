@@ -47,21 +47,23 @@ This rule is applied to all endpoints.
         "command": "start";
         "config" : { reference 'config' object }
     }
-    in this case the config is applied to the default config name 'config_<chid>'
-    and that config name is used if the channel is accidentally restarted or crashes
-    or the unit is power cycled
 
-    or:
+in this case the config is applied to the default config name 'config_<chid>'
+and that config name is used if the channel is accidentally restarted or crashes
+or the unit is power cycled
+
+or:
     {
         "command": "start";
         #!! the config_name is optional
         "config_name": "abchd";
     }
-    in this case the config named "abchd" is loaded for the channel, that config
-    is used if the channel is accidentally restart, crashes, or the unit is power
-    cycled.
 
-    or
+in this case the config named "abchd" is loaded for the channel, that config
+is used if the channel is accidentally restart, crashes, or the unit is power
+cycled.
+
+or:
     {
         "command": "start";
         #!! the config_name is optional
@@ -69,9 +71,9 @@ This rule is applied to all endpoints.
         "config" : { reference 'config' object }
     }
 
-    in this case the config object is saved in the file name "abchd", then the 
-    channel is started with that config. The config "abchd" is used if the channel
-    is accidentally restarted, crashes, or the unit is power cycled.
+in this case the config object is saved in the file name "abchd", then the 
+channel is started with that config. The config "abchd" is used if the channel
+is accidentally restarted, crashes, or the unit is power cycled.
 
 ### Response Body
 
