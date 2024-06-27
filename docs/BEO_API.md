@@ -42,7 +42,8 @@ This rule is applied to all endpoints.
 
     PUT /v1/beo/channel/<chid>
 
-    body:
+body:
+
     {
         "command": "start";
         "config" : { reference 'config' object }
@@ -81,7 +82,9 @@ is accidentally restarted, crashes, or the unit is power cycled.
 
 
     { "status" : "ok", }
-    or 
+
+or:
+
     { "error"  : "some error string", }
 
 
@@ -97,7 +100,8 @@ This is the command to start a channel in the ADI.
 
     PUT /v1/beo/channel/<chid>
 
-    body:
+body:
+
     {
         "command": "stop";
     }
@@ -106,7 +110,9 @@ This is the command to start a channel in the ADI.
 ### response body
 
     { "status" : "ok", }
-    or 
+
+or:
+
     { "error"  : "some error string", }
 
 -----------------------------------------------------------------------
@@ -128,7 +134,9 @@ This is the command to get the runtime status of a channel
         #!! there is a run time error
         "error"  : "some error string";
     }
-    or 
+
+or:
+
     { "error"  : "some error string", }
 
 
@@ -146,7 +154,7 @@ This is the command to get a config for a channel
     GET /v1/beo/channel/<chid>/config
     GET /v1/beo/channel/<chid>/config?name="abcdhd"
 
-    body: None
+body: None
 
 ### response body
 
@@ -155,7 +163,9 @@ This is the command to get a config for a channel
         "config_name": "abchd";
         "config" : { reference "config" object }
     }
-    or 
+
+or:
+
     { "error"  : "some error string", }
 
 -----------------------------------------------------------------------
@@ -169,7 +179,8 @@ This is the command to create a config for a channel
 
     PUT /v1/beo/channel/<chid>/config/<name>
 
-    body:
+body:
+
     {
         "config" : { reference "config" object }
     }
@@ -178,7 +189,9 @@ This is the command to create a config for a channel
 ### response body
 
     { "status" : "ok", }
-    or 
+ 
+or:
+
     { "error"  : "some error string", }
 
 -----------------------------------------------------------------------
@@ -192,13 +205,16 @@ This is the command to delete a config for a channel
 
     DELETE /v1/beo/channel/<chid>/config/<name>
 
-    body:
-        None
+body:
+
+    None
 
 ### response body
 
     { "status" : "ok", }
-    or 
+
+or:
+
     { "error"  : "some error string"; }
 
 -----------------------------------------------------------------------
@@ -212,7 +228,8 @@ This is the command to get a list of configs for a channel
 
     GET /v1/beo/channel/<chid>?list=config_names
 
-    body:
+body:
+
     {
       [ "abchd1",
         "abchd2",
@@ -224,7 +241,9 @@ This is the command to get a list of configs for a channel
 ### response body
 
     { "status" : "ok", }
-    or 
+
+or:
+
     { "error"  : "some error string", }
 
 -----------------------------------------------------------------------
