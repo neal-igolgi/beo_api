@@ -34,9 +34,9 @@ POST is not idempotent
     
 ### Description
 
-    This is the command to start a channel in the ADI.
-    If the chid is not specified, then it defaults to zero.
-    This rule is applied to all endpoints.
+This is the command to start a channel in the ADI.
+If the chid is not specified, then it defaults to zero.
+This rule is applied to all endpoints.
 
 ### HTTP Request
 
@@ -87,7 +87,7 @@ POST is not idempotent
     
 ### Description
 
-    This is the command to start a channel in the ADI.
+This is the command to start a channel in the ADI.
 
 ### HTTP Request
 
@@ -351,6 +351,7 @@ POST is not idempotent
 -----------------------------------------------------------------------
 ## Json Objects:
 
+[JSon Schema](./schemas/schema.json)
 
 # Implementation
 
