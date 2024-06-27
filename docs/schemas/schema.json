@@ -1,0 +1,663 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "title": "iLUX API Json Objects",  
+    "description": "Json objects used in the body or API",
+
+    "config" : {
+        "title" : "Transcode Config Object",
+        "description" : "This object specifies the config of the transcode session",
+        "type" : "object",
+        "properties" : {
+            "input" : {
+                "$ref" : "/input" 
+            },
+            "output" : {
+                "$ref" : "/output" 
+            }
+        }
+    },
+
+    "input" : {
+        "title" : "Transcode Input Object",
+        "description" : "this object specifies the input of the transcode session",
+        "type" : "object",
+        "properties" : {
+            "kind" : {
+                    "type" : "enumeration",
+                    "default" : "ip_ts",
+                    "list" : [ "ip_ts", "sdi", "hls" ],
+                    "description" : [ 
+                        "This is an enumeration of the different ",
+                        "types of inputs you can specify" 
+                    ]
+            },
+            "ip_ts" : { 
+                    "$ref" : "/ip_ts" 
+            },
+            "sdi"   : { 
+                    "$ref" : "/sdi_in"
+
+            },
+            "hls" : { 
+                    "schema" : "hls_input" 
+            },
+            "baseband" : {
+
+            },
+            "cropping" : {
+                    "schema" : "cropping",
+                    "optional" : true
+            },
+            "slate_config" : {
+                    "schema" : "slate_config" ,
+                    "optional" : true
+            }
+        },
+        "anyOf" : {
+            "required" : [ "ip_ts" ],
+            "required" : [ "sdi" ],
+            "required" : [ "hls_input" ]
+        },
+        "required" : [ "kind" ]
+
+    },
+
+    "output" : {
+        "title" : "Transcode Output Object",
+        "description" : "this object specifies the ou tput of the transcode session",
+        "type" : "object",
+        "properties" : {
+            "kind" : {
+                    "type" : "string",
+                    "default" : "multi_ts_out",
+                    "enum" : [ "multi_ts_out", "single_ts_out", "sdi_out", "hls_out" ],
+                    "description" : [ 
+                        "This is an enumeration of the different ",
+                        "types of outputs you can specify" 
+                    ]
+            },
+            "multi_ts_out" : { 
+                    "schema" : "multi_ts_out" 
+            },
+            "single_ts_out" : { 
+                    "schema" : "single_ts_out" 
+            },
+            "sdi_out"   : { 
+                    "schema" : "sdi_out"
+            },
+            "hls_out" : { 
+                    "schema" : "hls_out" 
+            }
+        },
+        "anyOf" : {
+            "required" : [ "multi_ts_out" ],
+            "required" : [ "single_ts_out" ],
+            "required" : [ "sdi_out" ],
+            "required" : [ "hls_out" ]
+        },
+        "required" : [ "kind" ]
+    },
+
+
+    "cropping" : {
+        "type" : "object",
+        "properties" : {
+            "left" : {
+                "type" : "integer",
+                "default" : 0,
+                "min" : 0,
+                "max" : "none",
+                "description" : "this is the description"
+            },
+            "top" : {
+                "type" : "integer",
+                "default" : 0,
+                "min" : 0,
+                "max" : "none",
+                "description" : "this is the description"
+            },
+            "right" : {
+                "type" : "integer",
+                "default" : 0,
+                "min" : 0,
+                "max" : "none",
+                "description" : "this is the description"
+            },
+            "bottom" : {
+                "type" : "integer",
+                "default" : 0,
+                "min" : 0,
+                "max" : "none",
+                "description" : "this is the description"
+            }
+        }
+    },
+
+    "ip_ts" : {
+        "type" : "object",
+        "description" : "describe the ip_ts input",
+        "properties" : {
+            "primary" : {
+                  "schema" : "ts_input" 
+            },
+            "source_timeout" : {
+                "type" : "integer",
+                "default" : "10",
+                "description" : "this is the timeout in seconds before we switch inputs"
+            },
+            "secondary_source_enable" : {
+                "type" : "boolean",
+                "default" : "false",
+                "description" : "if true, then secondary source is defined"
+            },
+            "secondary" : {
+                "schema" : "ts_input",
+                "description" : "this is the secondary transport stream "
+            }
+        }
+    },
+
+    "sdi_in" : {
+    },
+
+    "hls_in" : {
+    },
+
+    "ts_input" : {
+        "description" : "This describes a transport stream input",
+        "type" : "object",
+        "properties" : {
+            "program_index" : {
+                "type" : "integer",
+                "default" : 1,
+                "range" : { "min" : 1, "max" : 1000 },
+                "description" : "this is the description" 
+            },
+            "socket" : {
+                "schema" : "socket",
+                "description" : "this is the socket parameters for this input "
+            }
+        }
+    }, 
+
+    "socket" : {
+        "description" : "This describes a udp socket connection",
+        "type" : "object",
+        "properties" : {
+            "interface" : {
+                "type" : "string",
+                "default" : "",
+                "min_length" : 0,
+                "max_length" : "none",
+                "description" : "the network interface name"
+            },
+            "ip_addr"   : { 
+                "type" : "string",
+                "default" : "0.0.0.0",
+                "min_length" : 0,
+                "max_length" : "none",
+                "description" : [ 
+                    "The ip address used for this network interface." ,
+                    "Could be a multcast address or '0.0.0.0' which ",
+                    "means the assigned address of the interface" 
+                ]
+            },
+            "port"      : { 
+                "type" : "integer",
+                "default" : 9000,
+                "range" : { "min" : 1024, "max" : 65535 },
+                "description" : "This is the port to use on the socket"
+            },
+            "source"    : { 
+                "type" : "string",
+                "optional" : true,
+                "default" : "",
+                "min_length" : 0,
+                "max_length" : "none",
+                "description" : [ 
+                    "The ip address of the source of the multicast stream" ,
+                    "when using IGMPv3. This should not be included if not",
+                    "using IGMPv3." 
+                ]
+            }
+        }
+    },
+
+    "slate_config" : {
+        "type" : "object",
+        "properties" : {
+            "enable" : {
+                "type" : "boolean",
+                "default" : false,
+                "description" : "this is the description"
+            },
+            "file" : {
+                "type" : "string",
+                "default" : "", 
+                "description" : "this is the slate image file"
+            },
+            "force_audio_silence" : {
+                "type" : "boolean",
+                "default" : false,
+                "description" : [ 
+                    "If true, the transcoder will force audio ",
+                    "to silence when the slate start command ",
+                    "is received"
+                ]
+            }
+        }
+    },
+
+
+    "sdi_out" : {
+    },
+
+    "hls_out" : {
+    },
+
+    "mulit_ts_out" : {
+        "title" : "MultiTS Output Object",
+        "description" : "this object specifies the multi-ts output of the transcode session",
+        "type" : "object",
+        "properties" : {
+            "encoder" : { 
+                    "type" : "enumeration",
+                    "default" : "H264",
+                    "list" : [ "H264", "HEVC" ],
+                    "description" : [ 
+                        "This is an enumeration of the different ",
+                        "types of video codecs that you can specify." 
+                    ]
+            },
+            "ip_frame_distance" : {
+                "type" : "integer",
+                "default" : 1,
+                "min" : 1,
+                "max" : "none",
+                "description" : "this is the distance between reference frames"
+            },
+            "gop_length" : { 
+                "type" : "integer",
+                "default" : 1,
+                "min" : 1,
+                "max" : "none",
+                "description" : [ 
+                    "This is the gop length in seconds.",
+                    "For NTSC systems the true gop lenth is ",
+                    "multiplied by 1.001" 
+                ]
+            },
+            "video_aspect_ratio" : { 
+                    "type" : "string",
+                    "default" : "passthru",
+                    "list" : [ "passthru", "16x9", "4x3"],
+                    "description" : [ 
+                        "This is an enumeration of the different ",
+                        "types of aspect rations that you can specify." 
+                     ]
+            },
+            "closed_captions" : { 
+                    "type" : "string",
+                    "default" : "on",
+                    "enum" : [ "on", "off"],
+                    "description" : "You can turn captions on or off "
+            },
+            "afd" : { 
+                    "type" : "string",
+                    "default" : "on",
+                    "enum" : [ "on", "off"],
+                    "description" : "You can turn afd on or off "
+            },
+            "temporal_filter_strength" : { 
+                    "type" : "integer",
+                    "default" : 0,
+                    "enum" : [ 0, 1, 2, 3, 4, 5],
+                    "description" : "You can set the temporal filter strength."
+            },
+            "diagonal_smoothing_filter" : { 
+                    "type" : "string",
+                    "default" : "on",
+                    "enum" : [ "on", "off"],
+                    "description" : "You can turn diagonal smoothing on or off "
+            },
+            "low_video_framerate_mode" : { 
+                    "type" : "string",
+                    "default" : "on",
+                    "enum" : [ "on", "off"],
+                    "description" : "You can turn low video frame rate mode on or off "
+            },
+            "scene_detection" : { 
+                    "type" : "string",
+                    "default" : "on",
+                    "enum" : [ "on", "off"],
+                    "description" : "You can turn scene detection on or off "
+            },
+            "output_color_range" : { 
+                    "type" : "string",
+                    "default" : "auto",
+                    "enum" : [ "auto"],
+                    "description" : "You can turn scene detection on or off "
+            },
+            "output_color_primaries" : { 
+                    "type" : "string",
+                    "default" : "auto",
+                    "enum" : [ "auto"],
+                    "description" : "You can turn scene detection on or off "
+            },
+            "output_color_tc" : { 
+                    "type" : "string",
+                    "default" : "auto",
+                    "enum" : [ "auto"],
+                    "description" : "You can turn scene detection on or off "
+            },
+            "output_color_space" : { 
+                    "type" : "string",
+                    "default" : "auto",
+                    "enum" : [ "auto"],
+                    "description" : "You can turn scene detection on or off "
+            },
+            "ac3_drc_mode" : { 
+                    "type" : "string",
+                    "default" : "line",
+                    "enum" : [ "Custom A", "Custom D", "line", "rf" ],
+                    "description" : "TBD"
+            },
+            "output_audio_calm" : { 
+                    "type" : "string",
+                    "default" : "line",
+                    "enum" : [ 
+                          "disabled",
+                          "TV_5B_GEN", 
+                          "TV_5B_LIGHT", 
+                          "TV_5B_HEAVY", 
+                          "TV_5B_LOUD", 
+                          "ITU_LOUD_LIMIT", 
+                          "PROTECT_LIMIT" ],
+                    "description" : "TBD"
+            },
+            "audio_mapping" : { 
+                "schema" : "audio_mapping"
+            },
+            "pid_generation" : { 
+                    "type" : "string",
+                    "default" : "same",
+                    "enum" : [ "same", "unique" ],
+                    "description" : "TBD"
+            },
+            "encoder_boundary_points" : { 
+                    "type" : "string",
+                    "default" : "on",
+                    "enum" : [ "off", "off"],
+                    "description" : "You can turn encoder boundary ponts on or off "
+            },
+            "scte35_passthru" : { 
+                    "type" : "string",
+                    "default" : "on",
+                    "enum" : [ "on", "off"],
+                    "description" : "You can turn scte35 passthru on or off "
+            },
+            "output_settings" : { 
+                "schema" : "output_settings"
+            },
+            "video_profiles" : { 
+                "schema" : "video_profiles"
+            },
+            "audio_profiles" : { 
+                "schema" : "audio_profiles"
+            },
+            "output_streams" : { 
+                "schema" : "output_streams"
+            } 
+        },
+        "required" : [  ]
+    },
+
+    "audio_mapping" : { 
+        "title" : "Audio Mapping Object",
+        "description" : "this object specifies the mapping between input and output",
+        "type" : "object",
+        "properties" : {
+            "output_audio_1" : {
+                "type" : "string",
+                "default" : "none",
+                "enum" : [ "none", "input_audio_1", "input_audio_2", "input_audio_3" ],
+                "description" : [ 
+                    "This is an enumeration of the different ",
+                    "input_audio_selections" 
+                ]
+            },
+            "output_audio_2" : {
+                "type" : "string",
+                "default" : "none",
+                "enum" : [ "none", "input_audio_1", "input_audio_2", "input_audio_3" ],
+                "description" : [ 
+                    "This is an enumeration of the different ",
+                    "input_audio_selections" 
+                ]
+            },
+            "output_audio_1" : {
+                "type" : "string",
+                "default" : "none",
+                "enum" : [ "none", "input_audio_1", "input_audio_2", "input_audio_3" ],
+                "description" : [ 
+                    "This is an enumeration of the different ",
+                    "input_audio_selections" 
+                ]
+            }
+        },
+        "anyOf" : [ "output_audio_1",
+                    "output_audio_2",
+                    "output_audio_3"
+                  ]
+     },
+
+    "output_settings" : {  
+        "title" : "MultiTS Output Settings",
+        "description" : "this object specifies the output settings for multi-ts output of the transcode session",
+        "type" : "object",
+        "properties" : {
+            "network_interface" : { 
+                    "type" : "string",
+                    "description" :  "This is the name of the network interface used for output "
+            },
+            "multicast_ttl" : { 
+                    "type" : "integer",
+                    "default" : 16,
+                    "min" : 1,
+                    "max" : "none",
+                    "description" :  "This is the name of the network interface used for output "
+            },
+            "multi_ts_address" : { 
+                    "type" : "string",
+                    "description" :  "This is the network address of muticast group"
+            },
+            "num_video_profiles" : { 
+                    "type" : "integer",
+                    "default" : 0,
+                    "min" : 0,
+                    "max" : "none",
+                    "description" :  "This is the number of video profiles"
+            },
+            "num_audio_profiles" : { 
+                    "type" : "integer",
+                    "default" : 0,
+                    "min" : 0,
+                    "max" : "none",
+                    "description" :  "This is the number of audio profiles"
+            },
+            "num_output_streams" : { 
+                    "type" : "integer",
+                    "default" : 0,
+                    "min" : 0,
+                    "max" : "none",
+                    "description" :  "This is the number of output streams"
+            }
+        }
+    },
+
+    "video_profiles" : {  
+        "title" : "Video Profiles",
+        "description" : "This object specifies the list of video profiles to encode",
+        "type" : "array",
+        "items" : {
+            "type" : "object",
+            "schema" : "lmv_video_profile"
+        },
+        "description" :  "This is the array of video profiles"
+    },
+
+    "audio_profiles" : {  
+        "title" : "Audio Profiles",
+        "description" : "This object specifies the list of audio profiles to encode",
+        "type" : "array",
+        "items" : {
+            "type" : "object",
+            "schema" : "lmv_audio_profile"
+        },
+        "description" :  "This is the array of audio profiles"
+    },
+
+    "output_streams" : {  
+        "title" : "Output Streams",
+        "description" : "This object specifies the list of output streams to generate",
+        "type" : "array",
+        "items" : {
+            "type" : "object",
+            "schema" : "lmv_output_stream"
+        },
+        "description" :  "This is the array of audio profiles"
+    },
+
+
+    "lmv_video_profile" : {
+        "title" : "Video Profile",
+        "description" : "This object specifies parameters for a video profile",
+        "type" : "object",
+        "properties" : {
+            "width" : {
+                "type" : "integer",
+                "default" : 0,
+                "min" : 0,
+                "max" : "none",
+                "description" : "this is the width of the stream"
+            },
+            "height" : {
+                "type" : "integer",
+                "default" : 0,
+                "min" : 0,
+                "max" : "none",
+                "description" : "this is the height of the stream"
+            },
+            "framerate" : {
+                "type" : "number",
+                "default" : 0,
+                "enum" : [ 59.94, 29.97, 50, 25, 24, 23.97 ],
+
+                "description" : "this is the supported framerates"
+            },
+            "encoder_profile" : {
+                "type" : "string",
+                "default" : "main",
+                "enum" : [ "base", "main", "high", "main10" ],
+                "description" : "this is the encoder profile"
+            },
+            "bitrate" : {
+                "type" : "number",
+                "default" : 3000,
+                "description" : "this is the bitrate in kbps"
+            }
+        }
+    },
+
+    "lmv_audio_profile" : {
+        "title" : "Audio Profile",
+        "description" : "This object specifies parameters for an audio profile",
+        "type" : "object",
+        "properties" : {
+            "source_stream" : {
+                "type" : "integer",
+                "default" : 0,
+                "min" : 0,
+                "max" : "none",
+                "description" : "this is the output_audio_n to use for this source"
+            },
+            "codec" : {
+                "type" : "string",
+                "default" : "ac3",
+                "enum" : [ "ac3", "aac" ],
+                "description" : "this is the codec to use for the stream"
+            },
+            "bitrate" : {
+                "type" : "number",
+                "default" : 384,
+
+                "description" : "this is the bitrate in kbps"
+            },
+            "channels" : {
+                "type" : "integer",
+                "default" : "2",
+                "enum" : [ 2, 6 ],
+                "description" : "this is the number of audio channels to use"
+            },
+            "dialnorm" : {
+                "type" : "integer",
+                "default" : 31,
+                "min" : 0,
+                "max" : 31,
+                "description" : "this is the dialnorm. It applies only to ac3"
+            },
+            "volume" : {
+                "type" : "integer",
+                "default" : 100,
+                "min" : 0,
+                "max" : 200,
+                "description" : "this is the volume gain to apply to the output stream"
+            }
+        }
+    },
+
+    "lmv_output_stream" : {
+        "title" : "Output Stream",
+        "description" : "This object specifies parameters for one output stream",
+        "type" : "object",
+        "properties" : {
+            "enable" : {
+                "type" : "boolean",
+                "default" : true,
+                "description" : "indicates if this is enabled or not"
+            },
+            "multi_ts_address" : {
+                "type" : "string",
+                "default" : "127.0.0.1",
+                "description" : "TBD"
+            },
+            "multi_ts_port" : {
+                "type" : "integer",
+                "default" : 20000,
+                "min" : 1024,
+                "max" : 65535,
+                "description" : "TBD"
+            },
+            "video_profiles" : {
+                "type" : "array",
+                "items" : {
+                    "type" : "integer"
+                }
+            },
+            "audio_profiles" : {
+                "type" : "array",
+                "items" : {
+                    "type" : "integer"
+                }
+            },
+            "output_streams" : {
+                "type" : "array",
+                "items" : {
+                    "type" : "integer"
+                }
+            }
+        }
+    }
+
+}
+
