@@ -53,6 +53,7 @@ and that config name is used if the channel is accidentally restarted or crashes
 or the unit is power cycled
 
 or:
+
     {
         "command": "start";
         #!! the config_name is optional
@@ -64,6 +65,7 @@ is used if the channel is accidentally restart, crashes, or the unit is power
 cycled.
 
 or:
+
     {
         "command": "start";
         #!! the config_name is optional
