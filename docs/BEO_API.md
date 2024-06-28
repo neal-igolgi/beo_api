@@ -49,7 +49,7 @@ body:
         "config" : { reference 'config' object }
     }
 
-in this case the config is applied to the default config name 'config_<<chid>>'
+in this case the config is applied to the default config name 'config_{chid}'
 and that config name is used if the channel is accidentally restarted or crashes
 or the unit is power cycled
 
