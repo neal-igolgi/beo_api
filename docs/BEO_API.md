@@ -155,13 +155,22 @@ This is the command to get a config for a channel
 
 ### HTTP Request
 
-    #!! if the name is not specified, the default config is returned.
     GET /v1/beo/channel/<chid>/config
     GET /v1/beo/channel/<chid>/config?name="abcdhd"
+
+If the name is not specified, the default config is returned. 
+The default config is '`config_<chid>`'.
 
 body: None
 
 ### response body
+
+    { 
+        "status" : "ok"; 
+        "config" : { reference "config" object }
+    }
+
+or:
 
     { 
         "status" : "ok"; 
