@@ -161,7 +161,9 @@ This is the command to get a config for a channel
 If the name is not specified, the default config is returned. 
 The default config is '`config_<chid>`'.
 
-body: None
+body: 
+
+    None
 
 ### response body
 
