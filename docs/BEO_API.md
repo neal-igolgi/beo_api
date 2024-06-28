@@ -149,6 +149,112 @@ or:
 
 The error field is optional and is present if there is a run time error.
 
+examples:
+
+    { "status"  : { "state": "stopped" } }
+
+    { "status" : 
+        {
+            "state" : "running",
+            "Config": "/var/www/configs/t2_b25_c01_secv8hd_LVM.cfg",
+            "_audio_only": 0,
+            "_preview_image_id": 1719584959,
+            "APP STATE": 1,
+            "INPUT SIGNAL": "1",
+            "INPUT": {
+                "": "",
+                "INPUT PRIMARY": "eth1 (239.243.202.78:12000)",
+                "INPUT DECODER": "MPEG2:Software",
+                "INPUT VIDEO": "MPEG2: 1920 x 1080 @ 29.97 fps : AVG : 14.61 mbps",
+                "INPUT VIDEO PID": " 1011 (0x  3f3)",
+                "INPUT PMT PID": " 1010 (0x  3f2)",
+                "INPUT AUDIO 1": "AC3 - PID:  1012 (0x  3f4) @ 288.721 kbps, 48000 Hz",
+                "SLATE": "ENABLED",
+                "SLATE STATE": "INACTIVE, NORMAL PASSTHRU",
+                "SLATE V INSERT": "0",
+                "SLATE A INSERT": "0,0,0,0"
+            },
+            "OUTPUT": {
+                "": "",
+                "OUTPUT MODE": "MULTIRATE TS",
+                "OUTPUT PRIMARY": "eth1 (233.2.25.1:9001)",
+                "STREAM 1": "H.264:  512 x  384 @ 1000 kbps Q: 8  30.00 fps AUDIO: 96 kbps (HIGH)",
+                "_output_url_1_1": "udp://@233.2.25.1:9001",
+                "STREAM 2": "H.264:  960 x  540 @ 2000 kbps Q: 8  30.00 fps AUDIO: 96 kbps (HIGH)",
+                "_output_url_1_2": "udp://@233.2.25.1:9002",
+                "STREAM 3": "H.264: 1280 x  720 @ 4500 kbps Q: 8  30.00 fps AUDIO: 96 kbps (HIGH)",
+                "_output_url_1_3": "udp://@233.2.25.1:9003",
+                "STREAM 4": "H.264: 1280 x  720 @ 7000 kbps Q: 12  60.00 fps AUDIO: 96 kbps (HIGH)",
+                "_output_url_1_4": "udp://@233.2.25.1:9004",
+                "STREAM 5:1": "AUDIO ONLY: AAC, channels: 2, bitrate 96 kbps"
+            },
+            "EXTRA": {
+                "": "",
+                "ORIGIN PUBLISH": {
+                    "": "",
+                    "SERVER": "http://10.193.118.254:8089",
+                    "MEDIA NAME": "secv8hd",
+                    "PUBLISHING POINT": "233.2.25.1",
+                    "STATUS": "ERROR COMMUNICATING WITH CIM"
+                }
+            },
+            "STATUS": {
+                "": "",
+                "FRAMES PROCESSED": "40928",
+                "UP TIME": "22m 47s since last re-sync",
+                "RESYNC COUNT": "2",
+                "CLOCK DIFF": "122402 (SOURCE VS NTP)",
+                "PROC": "88260"
+            }
+        }
+    }
+    
+This is the ch_status of a non running channel:
+
+    {
+        "Config": "/usr/bin/mpeg2ts.cfg",
+        "_audio_only": 0,
+        "_preview_image_id": 0,
+        "APP STATE": 0,
+        "INPUT SIGNAL": "0",
+        "INPUT": {
+            "": "",
+            "INPUT PRIMARY": "default (0.0.0.0:2500)",
+            "INPUT DECODER": "MPEG2:Software",
+            "INPUT VIDEO": "MPEG2: 1920 x 1080 @ 29.97 fps : AVG : 0.00 mbps",
+            "INPUT VIDEO PID": "    0 (0x    0)",
+            "INPUT PMT PID": "    0 (0x    0)",
+            "INPUT AUDIO": "NOT PRESENT",
+            "SLATE": "DISABLED"
+        },
+        "OUTPUT": {
+            "": "",
+            "OUTPUT PRIMARY": "default (127.0.0.1:2900) @ 4.00 mbps",
+            "OUTPUT PRIMARY": " (:0)",
+            "OUTPUT VIDEO": "H.264: 0 x 0 @ 0.00 fps : AVG: CALCULATING mbps",
+            "OUTPUT VIDEO PID": "    0 (0x    0)",
+            "OUTPUT PMT PID": "    0 (0x    0)"
+        },
+        "EXTRA": {
+            "": "",
+            "ORIGIN PUBLISH": {
+                "": "",
+                "SERVER": "",
+                "MEDIA NAME": "",
+                "PUBLISHING POINT": "",
+                "STATUS": "INACTIVE"
+            }
+        },
+        "STATUS": {
+            "": "",
+            "FRAMES PROCESSED": "0",
+            "RESYNC COUNT": "0",
+            "LEVELS": "DI:-1 VPQ:-1 H264:-1 AMUX:-1 VMUX:-1 SCTE35:-1 CC:-1 UDP:-1",
+            "PROC": "88262",
+            "QUALITY": "5"
+        }
+    }
+
 
 -----------------------------------------------------------------------
 ## Get Config
