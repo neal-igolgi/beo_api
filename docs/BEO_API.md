@@ -10,6 +10,10 @@ These are all channel based comands for transcoder:
  - modify config
  - delete config
  - list config names
+
+These are all runtime commands for a channel.  
+They modify a running channel:
+
  - slate start 
  - slate stop 
  - slate select 
@@ -402,11 +406,12 @@ or:
     { "error"  : "some error string", }
 
 -----------------------------------------------------------------------
-## slate start
+## Slate Start
     
 ### Description
 
-This is the command to start the slate on a channel
+This is the command to start the slate on a channel.  
+This is a runtime command and will start the slate functionality for a channel.
 
 ### HTTP Request
 
@@ -424,11 +429,11 @@ This is the command to start the slate on a channel
     { "error"  : "some error string", }
 
 -----------------------------------------------------------------------
-## slate stop
+## Slate Stop
     
 ### Description
 
-This is the command to start the slate on a channel
+This is the command to stop the slate on a channel
 
 ### HTTP Request
 
@@ -447,7 +452,7 @@ This is the command to start the slate on a channel
 
 
 -----------------------------------------------------------------------
-## slate select
+## Slate Select
     
 ### Description
 
@@ -498,7 +503,7 @@ This is the command to upload a slate image file
     { "error"  : "some error string", }
 
 -----------------------------------------------------------------------
-## slate delete
+## Slate Delete
     
 ### Description
 
