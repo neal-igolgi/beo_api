@@ -57,7 +57,6 @@ or:
 
     {
         "command": "start";
-        #!! the config_name is optional
         "config_name": "abchd";
     }
 
@@ -69,7 +68,6 @@ or:
 
     {
         "command": "start";
-        #!! the config_name is optional
         "config_name": "abchd";
         "config" : { reference 'config' object }
     }
@@ -130,15 +128,23 @@ This is the command to get the runtime status of a channel
 
     { 
         "status" : { contents of the ch<n>_status.json }
-        #!! the error field is optional and is present if 
-        #!! there is a run time error
         "error"  : "some error string";
     }
+
 
 or:
 
     { "error"  : "some error string", }
 
+
+or:
+
+    { 
+        "status" : { contents of the ch<n>_status.json }
+        "error"  : "some error string";
+    }
+
+The error field is optional and is present if there is a run time error.
 
 
 -----------------------------------------------------------------------
