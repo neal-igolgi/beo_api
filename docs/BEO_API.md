@@ -160,7 +160,7 @@ This is the command to get a config for a channel
 ### HTTP Request
 
     GET /v1/beo/channel/<chid>/config
-    GET /v1/beo/channel/<chid>/config?name="abcdhd"
+    GET /v1/beo/channel/<chid>/config/<name>"
 
 If the name is not specified, the default config is returned. 
 The default config is '`config_<chid>`'.
@@ -188,6 +188,13 @@ or:
 
     { "error"  : "some error string", }
 
+examples:
+
+    { "error"  : "'name' does not exit", }
+
+    { "error"  : "'name' is corrupted", }
+
+    
 -----------------------------------------------------------------------
 ## Create/Modify Config
     
