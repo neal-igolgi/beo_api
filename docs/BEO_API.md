@@ -315,8 +315,15 @@ This is the command to create a config for a channel
     PUT /v1/beo/channel/<chid>/config
     PUT /v1/beo/channel/<chid>/config/<name>
 
+    PUT /v1/beo/channel/<chid>/config?action=reset
+
 If no 'name' is specified, then the defaul name is where the config
 object is stored. The default name is '`config_<chid>`'.
+
+If no name is specified and the 'action=reset' is specified, then
+the server will reset the channels default config back to factory value.
+
+The reset action can only be applie to the default config.
 
 body:
 
@@ -332,6 +339,10 @@ body:
 or:
 
     { "error"  : "some error string", }
+
+examples:
+
+    { "error"  : "no space on device", }
 
 -----------------------------------------------------------------------
 ## Delete Config
@@ -356,6 +367,11 @@ or:
 
     { "error"  : "some error string"; }
 
+examples:
+
+    { "error"  : "'name' does not exit", }
+
+    
 -----------------------------------------------------------------------
 ## List Config Names
     
