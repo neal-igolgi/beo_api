@@ -128,7 +128,6 @@ This is the command to get the runtime status of a channel
 
     { 
         "status" : { contents of the ch<n>_status.json }
-        "error"  : "some error string";
     }
 
 
