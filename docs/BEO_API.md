@@ -124,6 +124,10 @@ This is the command to get the runtime status of a channel
 
     GET /v1/beo/channel/<chid>
 
+body: 
+
+    None
+
 ### response body
 
     { 
