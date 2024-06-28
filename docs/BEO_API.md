@@ -268,9 +268,9 @@ This is the command to get a config for a channel
     GET /v1/beo/channel/<chid>/config
     GET /v1/beo/channel/<chid>/config/<name>"
 
-If the name is not specified and the channel is running, then you get the running config.
+If the name is not specified and the channel is running, then you get the running config.  
 If the name is not specified and the channel is not running, the default config is returned. 
-The default config is '`config_<chid>`'.
+The default config is '`config_<chid>`'.  
 If the name is specified, then you get the config for that name.
 
 body: 
