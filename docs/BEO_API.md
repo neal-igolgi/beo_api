@@ -197,7 +197,11 @@ This is the command to create a config for a channel
 
 ### HTTP Request
 
+    PUT /v1/beo/channel/<chid>/config
     PUT /v1/beo/channel/<chid>/config/<name>
+
+If no 'name' is specified, then the defaul name is where the config
+object is stored. The default name is '`config_<chid>`'.
 
 body:
 
